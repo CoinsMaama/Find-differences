@@ -304,9 +304,7 @@ Send a message with your transaction details!
        self.save_user_data(update.effective_user.id, user_data)
        await update.message.reply_text("💰 Added 1000 test coins!")
 
-   # Add this line in main() with other handlers:
-   application.add_handler(CommandHandler("testcoins", bot.testcoins_command))
-    
+
     async def withdraw_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Handle withdrawal request"""
         query = update.callback_query
@@ -424,6 +422,9 @@ def main():
     application = Application.builder().token(TOKEN).build()
     
     # Add handlers
+    # Add this line in main() with other handlers:
+    application.add_handler(CommandHandler("testcoins", bot.testcoins_command))
+    
     application.add_handler(CommandHandler("start", bot.start_command))
     application.add_handler(CommandHandler("profile", bot.profile_command))
     application.add_handler(CallbackQueryHandler(bot.callback_router))
