@@ -422,5 +422,15 @@ def main():
     print("Send /start to your bot on Telegram to test!")
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
+    # Add this command for testing
+    async def testcoins_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_data = self.load_user_data(update.effective_user.id)
+    user_data['coins'] += 1000
+    self.save_user_data(update.effective_user.id, user_data)
+    await update.message.reply_text("💰 Added 1000 test coins!")
+
+   # Add this line in main() with other handlers:
+   application.add_handler(CommandHandler("testcoins", bot.testcoins_command))
+
 if __name__ == '__main__':
     main()
